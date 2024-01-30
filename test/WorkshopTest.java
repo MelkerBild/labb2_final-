@@ -1,0 +1,73 @@
+import java.awt.geom.Point2D;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+class WorkshopTest {
+
+    private Workshop<Saab95> wSaab;
+    private Workshop wAll;
+    private Workshop<Volvo240> wVolvo;
+
+    private Saab95 saab;
+    private Volvo240 volvo;
+
+
+    @org.junit.jupiter.api.BeforeEach
+    void setUp() {
+        wAll = new Workshop(1);
+        wVolvo = new Workshop(10);
+        wSaab = new Workshop(10);
+
+        saab = new Saab95();
+        volvo = new Volvo240();
+
+
+
+    }
+
+    @org.junit.jupiter.api.AfterEach
+    void tearDown() {
+    }
+
+
+
+    @org.junit.jupiter.api.Test
+    void loadCargo1() {
+
+        wAll.loadCargo(saab);
+
+        Exception z = assertThrows(RuntimeException.class, ()->  wAll.loadCargo(volvo));
+        assertEquals(z.getMessage(), "Workshop is full");
+
+    }
+
+    @org.junit.jupiter.api.Test
+    void loadCargo2() {
+
+
+        wAll.loadCargo(saab);
+
+        assert wAll.getCargo().pop() == saab;
+
+    }
+
+
+
+    @org.junit.jupiter.api.Test
+    void offLoadCargo() {
+
+        wAll.loadCargo(saab);
+
+        assert wAll.offLoadCargo() == saab;
+
+    }}
+/*
+    @org.junit.jupiter.api.Test
+    void volvoWtest(){
+
+        wVolvo.loadCargo(saab);
+
+    }
+
+}*/
