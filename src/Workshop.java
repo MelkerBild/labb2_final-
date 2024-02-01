@@ -1,38 +1,25 @@
-import java.awt.geom.Point2D;
 import java.util.Stack;
 
-import static java.lang.Math.sqrt;
 
-
-public class Workshop <T extends Car>{
-    private Stack<T> cargo;
-    private final int maxsize;
-
+public class Workshop <T extends Car> implements Loading{
+    public CargoSpace cs;
 
     public Workshop(int maxsize) {
-        this.cargo = new Stack<>();
-        this.maxsize = maxsize;
-
+        cs = new CargoSpace(maxsize);
     }
 
-
-    public void loadCargo(T car) {
-        if (this.cargo.size() >= this.maxsize) {
+    @Override
+    public void loadCargo(Car car) {
+        if (cs.cargo.size() >= cs.maxsize) {
             throw new RuntimeException("Workshop is full");
         } else {
-            this.cargo.push(car);
+            cs.cargo.push(car);
         }
     }
 
+    @Override
     public T offLoadCargo() {
-        T a_car = this.cargo.pop();
+        T a_car = (T) cs.cargo.pop();
         return a_car;
     }
-
-    public Stack getCargo(){
-        return this.cargo;
-
-    }
-
-
 }

@@ -40,6 +40,12 @@ class TransportTest {
         assertEquals(y.getMessage(), "Cant start if flaks angle not 0");
     }
 
+    @org.junit.jupiter.api.Test
+    void gasWithAngle() {
+        transport.changeAngle(90);
+        Exception y = assertThrows(RuntimeException.class, () -> transport.gas(0.5));
+        assertEquals(y.getMessage(), "Can't gas while angle not 0");
+    }
 
     @Test
     void avståndsformeln() {

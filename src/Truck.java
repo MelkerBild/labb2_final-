@@ -26,4 +26,13 @@ public abstract class Truck extends Car{
         return 1;
     }
 
+    @Override
+    public void incrementSpeed(double amount){
+        if (this.angle == 0) {
+            super.incrementSpeed(amount);
+        }
+        else {
+            throw new RuntimeException("Can't gas while angle not 0");
+        }
+    }
 }
