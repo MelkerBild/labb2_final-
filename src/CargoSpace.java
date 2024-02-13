@@ -1,3 +1,4 @@
+import java.awt.geom.Point2D;
 import java.util.Stack;
 
 public class CargoSpace <T extends Car>{
@@ -5,6 +6,7 @@ public class CargoSpace <T extends Car>{
     public Stack<T> cargo;
 
     public int maxsize;
+
 
     public CargoSpace(int maxsize){
         this.cargo = new Stack<>();
@@ -14,5 +16,4 @@ public class CargoSpace <T extends Car>{
     public Stack getCargo(){
         return this.cargo;
     }
-
 }

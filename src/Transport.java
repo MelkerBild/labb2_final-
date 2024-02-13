@@ -7,9 +7,12 @@ import static java.lang.Math.sqrt;
 public class Transport extends Truck implements Loading{
     private CargoSpace cs;
 
+    private LocationHelper locationHelper;
+
     public Transport() {
         super(2, 200, 0, Color.YELLOW, "Superyellowbigtruck", new Point2D.Double(0, 0), new Point(1, 0), 0);
         cs = new CargoSpace(1);
+        locationHelper = new LocationHelper();
     }
 
     public void changeAngle(int new_angle) {
@@ -24,12 +27,6 @@ public class Transport extends Truck implements Loading{
         }
     }
 
-    public double avståndsFormeln(Point2D point1, Point2D point2){
-        double dx = point2.getX() - point1.getX();
-        double dy = point2.getY()- point1.getY();
-        return sqrt(dx*dx+dy*dy);
-    } // TODO ta bort och ha endast i Loading??
-
     @Override
     public void loadCargo(Car car) {
         if (getCurrentSpeed() != 0) {
@@ -38,12 +35,16 @@ public class Transport extends Truck implements Loading{
         else if (cs.cargo.size() == cs.maxsize) {
             throw new RuntimeException("Transport full");
         }
-        else if (avståndsFormeln(car.getpoint(), this.getpoint()) > 8) {
+        else if (locationHelper.avståndsFormeln(car.getpoint(), this.getpoint()) > 8) {
             throw new RuntimeException("Cargo not at transport");
 
         }
         else if (getAngle() != 0) {
             throw new RuntimeException("Cant load without ramp down");
+
+        }
+        else if (car instanceof Truck){
+                throw new RuntimeException("Truck cannot be loaded"); // Är detta ok?
         }
         else {
             cs.cargo.push(car);

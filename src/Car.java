@@ -9,6 +9,7 @@ public abstract class Car implements Movable {
     private final String modelName;
     private Point2D point;
     private Point direction;
+
     public Car(int nrDoors, double enginePower, double currentSpeed, Color color, String modelName, Point2D point, Point direction){
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
