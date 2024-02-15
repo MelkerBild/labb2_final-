@@ -59,15 +59,12 @@ public abstract class Car implements Movable {
         this.point =  new Point2D.Double(this.point.getX() + this.direction.x*this.currentSpeed,
                 this.point.getY()+this.direction.y*this.currentSpeed);
     }
-
     @Override
     public void turnLeft() {
         int tmp = this.direction.x;
         this.direction.x = - this.direction.y;
         this.direction.y = tmp;
-
     }
-
     @Override
     public void turnRight() {
         int tmp = this.direction.x;

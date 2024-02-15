@@ -8,11 +8,8 @@ class WorkshopTest {
     private Workshop<Saab95> wSaab;
     private Workshop wAll;
     private Workshop<Volvo240> wVolvo;
-
     private Saab95 saab;
     private Volvo240 volvo;
-
-
     @org.junit.jupiter.api.BeforeEach
     void setUp() {
         wAll = new Workshop(1);
@@ -21,17 +18,10 @@ class WorkshopTest {
 
         saab = new Saab95();
         volvo = new Volvo240();
-
-
-
     }
-
     @org.junit.jupiter.api.AfterEach
     void tearDown() {
     }
-
-
-
     @org.junit.jupiter.api.Test
     void loadCargo1() {
 

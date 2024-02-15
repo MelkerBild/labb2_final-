@@ -3,7 +3,7 @@ import java.awt.geom.Point2D;
 public class Scania extends Truck {
 
     public Scania() {
-        super(2, 200, 0, Color.YELLOW, "Superyellowbigtruck", new Point2D.Double(0, 0), new Point(1, 0), 0);
+        super(2, 200, 0, Color.YELLOW, "Superyellowbigtruck", new Point2D.Double(0, 100), new Point(1, 0), 0);
     }
 
     public void changeAngle(int new_angle) {

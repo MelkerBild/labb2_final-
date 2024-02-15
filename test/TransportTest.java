@@ -43,6 +43,7 @@ class TransportTest {
 
     @Test
     void avståndsformeln() {
+        positionHelper transport = new positionHelper();
         Point2D point1 = new Point2D.Double(0, 0);
         Point2D point2 = new Point2D.Double(1, 1);
         double dist = transport.avståndsFormeln(point1, point2);

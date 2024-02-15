@@ -4,35 +4,37 @@ import java.util.Stack;
 import static java.lang.Math.sqrt;
 
 
-public class Workshop <T extends Car>{
-    private Stack<T> cargo;
-    private final int maxsize;
-
+public class Workshop <T extends Car> implements Loading{
+    private CargoSpace cs;
+    private positionHelper poshelp;
+    private Point2D point;
 
     public Workshop(int maxsize) {
-        this.cargo = new Stack<>();
-        this.maxsize = maxsize;
-
+        cs = new CargoSpace(1);
+        poshelp = new positionHelper();
+        point = new Point2D.Double(0, 0);
     }
 
-
-    public void loadCargo(T car) {
-        if (this.cargo.size() >= this.maxsize) {
+    public void loadCargo(Car car) {
+        if (cs.cargo.size() >= cs.maxsize) {
             throw new RuntimeException("Workshop is full");
-        } else {
-            this.cargo.push(car);
+        }
+        else if (poshelp.avståndsFormeln(car.getpoint(), this.getpoint()) > 8) {
+            throw new RuntimeException("Cargo not at workshop");}
+        else {
+            cs.cargo.push(car);
         }
     }
 
+    public Point2D getpoint() {
+        return this.point;
+    }
+
     public T offLoadCargo() {
-        T a_car = this.cargo.pop();
+        T a_car = (T) cs.cargo.pop();
         return a_car;
     }
-
     public Stack getCargo(){
-        return this.cargo;
-
+        return cs.cargo;
     }
-
-
 }
