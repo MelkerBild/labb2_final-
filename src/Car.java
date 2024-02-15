@@ -9,6 +9,7 @@ public abstract class Car implements Movable {
     private final String modelName;
     private Point2D point;
     private Point direction;
+
     public Car(int nrDoors, double enginePower, double currentSpeed, Color color, String modelName, Point2D point, Point direction){
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
@@ -95,9 +96,6 @@ public abstract class Car implements Movable {
     public void setPos(Point2D point){
         this.point = point;
     }
-    public void updatePosition(Transport transport) {
-        Point2D transportPosition = transport.getpoint();
-        this.point = new Point2D.Double(transportPosition.getX(), transportPosition.getY());
-    }
+
 }
 

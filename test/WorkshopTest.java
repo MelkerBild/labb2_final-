@@ -13,8 +13,8 @@ class WorkshopTest {
     @org.junit.jupiter.api.BeforeEach
     void setUp() {
         wAll = new Workshop(1);
-        wVolvo = new Workshop(10);
-        wSaab = new Workshop(10);
+        wVolvo = new Workshop<Volvo240>(10);
+        wSaab = new Workshop<Saab95>(10);
 
         saab = new Saab95();
         volvo = new Volvo240();
@@ -23,7 +23,7 @@ class WorkshopTest {
     void tearDown() {
     }
     @org.junit.jupiter.api.Test
-    void loadCargo1() {
+    void enterWorkshop1() {
 
         wAll.loadCargo(saab);
 
@@ -33,19 +33,18 @@ class WorkshopTest {
     }
 
     @org.junit.jupiter.api.Test
-    void loadCargo2() {
+    void enterWorkshop2() {
 
 
         wAll.loadCargo(saab);
 
-        assert wAll.getCargo().pop() == saab;
+        assert wAll.cs.getCargo().pop() == saab;
 
     }
 
 
-
     @org.junit.jupiter.api.Test
-    void offLoadCargo() {
+    void exitWorkshop() {
 
         wAll.loadCargo(saab);
 
