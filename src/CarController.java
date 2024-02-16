@@ -13,7 +13,6 @@ public class CarController {
     // member fields:
     // The delay (ms) corresponds to 20 updates a sec (hz)
     private final int delay = 50;
-    private int IMAGEWIDTH = 100;
     // The timer is started with a listener (see below) that executes the statements
     // each step between delays.
     private Timer timer = new Timer(delay, new TimerListener());
@@ -22,17 +21,17 @@ public class CarController {
     CarView frame;
     // A list of cars, modify if needed
     ArrayList<Car> cars = new ArrayList<>();
+    static Volvo240 volvo = new Volvo240();
+    static Saab95 saab = new Saab95();
+    static Scania scania = new Scania();
 
     //methods:
-
     public static void main(String[] args) {
         // Instance of this class
         CarController cc = new CarController();
-
-        cc.cars.add(new Volvo240());
-        cc.cars.add(new Saab95());
-
-        cc.cars.add(new Scania());
+        cc.cars.add(volvo);
+        cc.cars.add(saab);
+        cc.cars.add(scania);
 
         // Start a new view and send a reference of self
         cc.frame = new CarView("CarSim 1.0", cc);
@@ -45,27 +44,36 @@ public class CarController {
     * */
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            for (Car car : cars) {
-                car.move();
-                int x = (int) Math.round(car.getpoint().getX());
-                int y = (int) Math.round(car.getpoint().getY());
-                if (x < CarView.X - frame.drawPanel.volvoImage.getWidth() && x >= 0){
-                    frame.drawPanel.moveit(car, x, y);
-                    frame.drawPanel.repaint();
-                    if (x == frame.drawPanel.volvoWorkshopPoint.x && y >= frame.drawPanel.volvoWorkshopPoint.y && y < frame.drawPanel.volvoWorkshopPoint.y + frame.drawPanel.volvoWorkshopImage.getHeight() && car instanceof Volvo240){
-                        car.stopEngine();
-                    }
+              for (int i = 0; i < cars.size(); i++){
+                  Car car = cars.get(i);
+                  car.move();
+                  int x = (int) Math.round(car.getpoint().getX());
+                  int y = (int) Math.round(car.getpoint().getY());
+                  if (checkwalls(x) && checkworkshop(car, x, y)){
+                    car.stopEngine();
+                    cars.remove(car);
                 }
-
-                else {
+                  else if (!checkwalls(x)) {
                     car.turnLeft();
                     car.turnLeft();
-                    frame.drawPanel.moveit(car, x, y);
-                    frame.drawPanel.repaint();
-                }}
+                }
+                  frame.drawPanel.paintit(car, x, y);
+                  frame.drawPanel.repaint();
+            }
         }
     }
-
+    boolean checkwalls(int x){
+        if (x < CarView.X - frame.drawPanel.volvoImage.getWidth() && x >= 0){
+            return true;
+        }
+        return false;
+    }
+    boolean checkworkshop(Car car, int x, int y){
+        if (x >= frame.drawPanel.volvoWorkshopPoint.x && y >= frame.drawPanel.volvoWorkshopPoint.y && y < frame.drawPanel.volvoWorkshopPoint.y + frame.drawPanel.volvoWorkshopImage.getHeight() && car instanceof Volvo240){
+            return true;
+        }
+        return false;
+    }
     // Calls the gas method for each car once
     void gas(int amount) {
         double gas = ((double) amount) / 100;

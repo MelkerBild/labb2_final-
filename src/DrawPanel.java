@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -11,35 +12,18 @@ public class DrawPanel extends JPanel{
 
     BufferedImage volvoImage;
 
-    Point volvoPoint = new Point();
-
     BufferedImage saabImage;
 
-    Point saabPoint = new Point();
-
     BufferedImage scaniaImage;
-
-    Point scaniaPoint = new Point();
 
     BufferedImage volvoWorkshopImage;
     Point volvoWorkshopPoint = new Point(300,300);
 
-    // TODO: Make this general for all cars
-
-    void moveit(Car car, int x, int y){
-        if (car instanceof Volvo240) {
-            volvoPoint.x = x;
-            volvoPoint.y = y;
-        }
-        else if (car instanceof Saab95) {
-            saabPoint.x = x;
-            saabPoint.y = y;
-        }
-        else {
-            scaniaPoint.x = x;
-            scaniaPoint.y = y;
-        }
+     // TODO: Make this general for all cars
+    void paintit(Car car, int x, int y){
+        car.setPos(new Point2D.Double(x, y));
     }
+
 
     // Initializes the panel and reads the images
     public DrawPanel(int x, int y) {
@@ -66,12 +50,20 @@ public class DrawPanel extends JPanel{
 
     // This method is called each time the panel updates/refreshes/repaints itself
     // TODO: Change to suit your needs.
+//    @Override
+//    protected void paintComponent(Graphics g) {
+//        super.paintComponent(g);
+//        g.drawImage(volvoImage, volvoPoint.x, volvoPoint.y, null); // see javadoc for more info on the parameters
+//        g.drawImage(saabImage, saabPoint.x, saabPoint.y, null);
+//        g.drawImage(scaniaImage, scaniaPoint.x, scaniaPoint.y, null);
+//        g.drawImage(volvoWorkshopImage, volvoWorkshopPoint.x, volvoWorkshopPoint.y, null);
+//    }
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(volvoImage, volvoPoint.x, volvoPoint.y, null); // see javadoc for more info on the parameters
-        g.drawImage(saabImage, saabPoint.x, saabPoint.y, null);
-        g.drawImage(scaniaImage, scaniaPoint.x, scaniaPoint.y, null);
+        g.drawImage(volvoImage, (int) CarController.volvo.getpoint().getX(), (int) CarController.volvo.getpoint().getY(), null); // see javadoc for more info on the parameters
+        g.drawImage(saabImage, (int) CarController.saab.getpoint().getX(), (int) CarController.saab.getpoint().getY(), null);
+        g.drawImage(scaniaImage, (int) CarController.scania.getpoint().getX(), (int) CarController.scania.getpoint().getY(), null);
         g.drawImage(volvoWorkshopImage, volvoWorkshopPoint.x, volvoWorkshopPoint.y, null);
     }
 }

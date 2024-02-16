@@ -3,7 +3,6 @@ import java.util.Stack;
 
 import static java.lang.Math.sqrt;
 
-
 public class Workshop <T extends Car> implements Loading{
     private CargoSpace cs;
     private positionHelper poshelp;
@@ -14,7 +13,6 @@ public class Workshop <T extends Car> implements Loading{
         poshelp = new positionHelper();
         point = new Point2D.Double(0, 0);
     }
-
     public void loadCargo(Car car) {
         if (cs.cargo.size() >= cs.maxsize) {
             throw new RuntimeException("Workshop is full");
@@ -25,11 +23,9 @@ public class Workshop <T extends Car> implements Loading{
             cs.cargo.push(car);
         }
     }
-
     public Point2D getpoint() {
         return this.point;
     }
-
     public T offLoadCargo() {
         T a_car = (T) cs.cargo.pop();
         return a_car;

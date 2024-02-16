@@ -7,5 +7,5 @@ public class positionHelper {
         double dx = point2.getX() - point1.getX();
         double dy = point2.getY()- point1.getY();
         return sqrt(dx*dx+dy*dy);
-}
+    }
 }
