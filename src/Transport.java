@@ -1,5 +1,8 @@
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.geom.Point2D;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.Stack;
 
 import static java.lang.Math.sqrt;
@@ -7,8 +10,17 @@ import static java.lang.Math.sqrt;
 public class Transport extends Truck implements Loading{
     private CargoSpace cs;
     private positionHelper poshelp;
+
+    private static BufferedImage image;
+    static {
+        try {
+            image = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/VolvoBrand.jpg"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public Transport() {
-        super(2, 200, 0, Color.YELLOW, "Superyellowbigtruck", new Point2D.Double(0, 0), new Point(1, 0), 0);
+        super(2, 200, 0, Color.YELLOW, "Superyellowbigtruck", new Point2D.Double(0, 0), new Point(1, 0), 0, image);
         cs = new CargoSpace(1);
         poshelp = new positionHelper();
     }
@@ -30,7 +42,7 @@ public class Transport extends Truck implements Loading{
         else if (cs.cargo.size() == cs.maxsize) {
             throw new RuntimeException("Transport full");
         }
-        else if (poshelp.avståndsFormeln(car.getpoint(), this.getpoint()) > 8) {
+        else if (poshelp.avståndsFormeln(car.getPoint(), this.getPoint()) > 8) {
             throw new RuntimeException("Cargo not at transport");
 
         }
@@ -42,7 +54,7 @@ public class Transport extends Truck implements Loading{
         }
         else {
             cs.cargo.push(car);
-            car.setPos(this.getpoint());
+            car.setPos(this.getPoint());
         }
     }
     public Car offLoadCargo(){
@@ -55,7 +67,7 @@ public class Transport extends Truck implements Loading{
         }
         else {
             a_car = (Car) cs.cargo.pop();
-            Point2D point1 = new Point2D.Double(this.getpoint().getX()-2, this.getpoint().getY()-2);
+            Point2D point1 = new Point2D.Double(this.getPoint().getX()-2, this.getPoint().getY()-2);
             a_car.setPos(point1);
         }
         return a_car;

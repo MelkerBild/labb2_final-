@@ -5,5 +5,5 @@ public interface Loading <T extends Car>{
     void loadCargo(T car);
 
     public Car offLoadCargo();
-    public Point2D getpoint();
+    public Point2D getPoint();
 }

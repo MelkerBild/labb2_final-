@@ -1,9 +1,20 @@
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.geom.Point2D;
-public class Scania extends Truck {
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
+public class Scania extends Truck {
+    private static BufferedImage scaniaImage;
+    static {
+        try {
+            scaniaImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Scania.jpg"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public Scania() {
-        super(2, 200, 0, Color.YELLOW, "Superyellowbigtruck", new Point2D.Double(0, 100), new Point(1, 0), 0);
+        super(2, 200, 0, Color.YELLOW, "Superyellowbigtruck", new Point2D.Double(0, 100), new Point(1, 0), 0, scaniaImage);
     }
 
     public void changeAngle(int new_angle) {

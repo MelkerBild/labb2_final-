@@ -1,7 +1,8 @@
 import java.awt.*;
 import java.awt.geom.Point2D;
+import java.awt.image.BufferedImage;
 
-public abstract class Car implements Movable {
+public abstract class Car implements Movable, Drawable{
     private final int nrDoors;
     private final double enginePower;
     public double currentSpeed;
@@ -9,8 +10,10 @@ public abstract class Car implements Movable {
     private final String modelName;
     private Point2D point;
     private Point direction;
+    private final BufferedImage image;
 
-    public Car(int nrDoors, double enginePower, double currentSpeed, Color color, String modelName, Point2D point, Point direction){
+
+    public Car(int nrDoors, double enginePower, double currentSpeed, Color color, String modelName, Point2D point, Point direction, BufferedImage image){
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
         this.currentSpeed = currentSpeed;
@@ -18,6 +21,7 @@ public abstract class Car implements Movable {
         this.modelName = modelName;
         this.point = point;
         this.direction = direction;
+        this.image = image;
     }
 
     public int getNrDoors() {
@@ -48,11 +52,15 @@ public abstract class Car implements Movable {
         this.currentSpeed = 0;
     }
 
-    public Point2D getpoint() {
+    public Point2D getPoint() {
         return this.point;}
 
     public Point getDirection() {
         return this.direction;
+    }
+
+    public BufferedImage getImage(){
+        return this.image;
     }
 
     @Override
