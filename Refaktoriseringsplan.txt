@@ -1,0 +1,20 @@
+Interfaces:
+1. Observer interface
+    Observer tillåter Model att kalla på repaint i View utan att ha någon direkt koppling till View.
+
+2. Drawable interface och refaktorisering av DrawPanel
+    Drawable som implementeras i Car och Workshop används för ett blueprint till objekt som kommer att instansieras i
+    programkörningen. Genom att implementera BufferedImage i Car kan vi istället referera till respektive klass bild vid
+    instansiering av klassen istället för att DrawPanel deklarerar dessa utan tanke på vilka objekt som instansieras.
+
+Skapandet av Model
+    Model klassen ska ta hand om all domänlogik som tidigare legat på CarController så logik som actionListener och
+    kallningen av klassmetoder som gas, brake, etc. har flyttats hit.
+
+Moveit() togs bort
+    Den hade ingen vettig implementation då vi redan implementerar detta i klassmetoden move().
+
+CarController()
+    Används mer som applikation i nuläget, kör programmet och genom komposition sätter View till observer som används
+    i Model (genom metoden setObserver()).
+
