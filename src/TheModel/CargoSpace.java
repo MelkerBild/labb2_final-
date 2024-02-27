@@ -1,3 +1,5 @@
+package TheModel;
+
 import java.util.Stack;
 
 public class CargoSpace <T extends Car> {

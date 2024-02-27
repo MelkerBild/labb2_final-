@@ -1,3 +1,6 @@
+package TheModel;
+
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,12 +11,12 @@ public class Model {
     private Timer timer = new Timer(delay, new TimerListener());
     Observer observer;
     // A list of cars, modify if needed
-    ArrayList<Car> cars = new ArrayList<>();
-    static Workshop<Volvo240> workshop = new Workshop(1);
+    public static ArrayList<Car> cars = new ArrayList<>();
+    public static Workshop<Volvo240> workshop = new Workshop(1);
     static Volvo240 volvo = new Volvo240();
     static Saab95 saab = new Saab95();
     static Scania scania = new Scania();
-    Model(){
+    public Model(){
         cars.add(volvo);
         cars.add(saab);
         cars.add(scania);
@@ -38,65 +41,64 @@ public class Model {
         }
     }
     boolean checkwalls(int x, Car car){
-        if (x < CarView.X - car.getImage().getWidth() && x >= 0){
+        if (x < 800 - car.getImage().getWidth() && x >= 0){
             return true;
         }
         return false;
     }
-    //frame.drawPanel.volvoImage.getWidth()
     boolean checkworkshop(Car car, int x, int y){
-        if (x >= 300 && y >= 300 && y < 300 + 300 && car instanceof Volvo240){
+        if (x >= workshop.getPoint().getX() && y >= workshop.getImage().getHeight() && y < workshop.getPoint().getY() + workshop.getImage().getHeight() && car instanceof Volvo240){
             return true;
         }
         return false;
     }
     // Calls the gas method for each car once
-    void gas(int amount) {
+    public void gas(int amount) {
         double gas = ((double) amount) / 100;
         for (Car car : cars) {
             car.gas(gas);
         }
     }
-    void brake(int amount) {
+    public void brake(int amount) {
         double brake = ((double) amount) / 100;
         for (Car car : cars) {
             car.brake(brake);
         }
     }
-    void stop(){
+    public void stop(){
         for (Car car : cars) {
             car.stopEngine();
         }
     }
-    void start(){
+    public void start(){
         for (Car car : cars) {
             car.startEngine();
         }
     }
-    void turboOn(){
+    public void turboOn(){
         for (Car car : cars)
-        {if (car instanceof Saab95 ){
+        {if (car instanceof Saab95){
             ((Saab95) car).setTurboOn();
         }
         }
     }
-    void turboOff(){
+    public void turboOff(){
         for (Car car : cars)
-        {if (car instanceof Saab95 ){
+        {if (car instanceof Saab95){
             ((Saab95) car).setTurboOff();
         }
         }
     }
-    void liftBed(){
+    public void liftBed(){
         for (Car car : cars)
-        {if (car instanceof Scania ){
+        {if (car instanceof Scania){
             ((Scania) car).changeAngle(69);
         }
         }
     }
-    void lowerBed(){
+    public void lowerBed(){
         for (Car car : cars)
-        {if (car instanceof Scania ){
+        {if (car instanceof Scania){
             ((Scania) car).changeAngle(0);
         }
         }

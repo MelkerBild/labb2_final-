@@ -1,8 +1,13 @@
+package TheModel;
+
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
-public abstract class Car implements Movable, Drawable{
+public abstract class Car implements Movable, Drawable {
     private final int nrDoors;
     private final double enginePower;
     public double currentSpeed;
@@ -10,10 +15,11 @@ public abstract class Car implements Movable, Drawable{
     private final String modelName;
     private Point2D point;
     private Point direction;
-    private final BufferedImage image;
+    private BufferedImage image;
+    private String imagestring;
 
 
-    public Car(int nrDoors, double enginePower, double currentSpeed, Color color, String modelName, Point2D point, Point direction, BufferedImage image){
+    public Car(int nrDoors, double enginePower, double currentSpeed, Color color, String modelName, Point2D point, Point direction, String imagestring){
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
         this.currentSpeed = currentSpeed;
@@ -21,9 +27,16 @@ public abstract class Car implements Movable, Drawable{
         this.modelName = modelName;
         this.point = point;
         this.direction = direction;
-        this.image = image;
+        this.imagestring = imagestring;
+        setCarImage(imagestring);
     }
-
+    public void setCarImage(String imagestring){
+        try {
+            image = ImageIO.read(new File(imagestring));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public int getNrDoors() {
         return this.nrDoors;
     }

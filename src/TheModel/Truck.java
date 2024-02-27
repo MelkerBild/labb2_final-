@@ -1,10 +1,11 @@
+package TheModel;
+
 import java.awt.*;
 import java.awt.geom.Point2D;
-import java.awt.image.BufferedImage;
 
-public abstract class Truck extends Car{
+public abstract class Truck extends Car {
     public int angle;
-    public Truck(int nrDoors, double enginePower, double currentSpeed, Color color, String modelName, Point2D point, Point direction, int angle, BufferedImage image){
+    public Truck(int nrDoors, double enginePower, double currentSpeed, Color color, String modelName, Point2D point, Point direction, int angle, String image){
         super(nrDoors, enginePower, currentSpeed, color, modelName, point, direction, image);
         this.angle = angle;
     }

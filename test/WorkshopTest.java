@@ -1,4 +1,6 @@
-import java.awt.geom.Point2D;
+import TheModel.Saab95;
+import TheModel.Volvo240;
+import TheModel.Workshop;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -28,7 +30,7 @@ class WorkshopTest {
         wAll.loadCargo(saab);
 
         Exception z = assertThrows(RuntimeException.class, ()->  wAll.loadCargo(volvo));
-        assertEquals(z.getMessage(), "Workshop is full");
+        assertEquals(z.getMessage(), "Model.Workshop is full");
 
     }
 

@@ -1,26 +1,22 @@
-import javax.imageio.ImageIO;
+package TheModel;
+
 import java.awt.*;
 import java.awt.geom.Point2D;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.util.Stack;
 
-import static java.lang.Math.sqrt;
-
-public class Transport extends Truck implements Loading{
+public class Transport extends Truck implements Loading {
     private CargoSpace cs;
     private positionHelper poshelp;
 
-    private static BufferedImage image;
-    static {
-        try {
-            image = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/VolvoBrand.jpg"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+//    private static BufferedImage image;
+//    static {
+//        try {
+//            image = ImageIO.read(View.DrawPanel.class.getResourceAsStream("pics/VolvoBrand.jpg"));
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
     public Transport() {
-        super(2, 200, 0, Color.YELLOW, "Superyellowbigtruck", new Point2D.Double(0, 0), new Point(1, 0), 0, image);
+        super(2, 200, 0, Color.YELLOW, "Superyellowbigtruck", new Point2D.Double(0, 0), new Point(1, 0), 0, "pics/VolvoBrand.jpg");
         cs = new CargoSpace(1);
         poshelp = new positionHelper();
     }
@@ -40,7 +36,7 @@ public class Transport extends Truck implements Loading{
             throw new RuntimeException("Cant load while driving");
         }
         else if (cs.cargo.size() == cs.maxsize) {
-            throw new RuntimeException("Transport full");
+            throw new RuntimeException("Model.Transport full");
         }
         else if (poshelp.avståndsFormeln(car.getPoint(), this.getPoint()) > 8) {
             throw new RuntimeException("Cargo not at transport");

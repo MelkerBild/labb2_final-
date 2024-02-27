@@ -1,4 +1,8 @@
 
+import TheModel.Saab95;
+import TheModel.Transport;
+import TheModel.Volvo240;
+import TheModel.positionHelper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -69,7 +73,7 @@ class TransportTest {
         transport.loadCargo(car);
         Car car1 = new Volvo240();
         Exception y = assertThrows(RuntimeException.class, () -> transport.loadCargo(car1));
-        assertEquals(y.getMessage(), "Transport full");
+        assertEquals(y.getMessage(), "Model.Transport full");
     }
     @org.junit.jupiter.api.Test
     void loadCargoAngle(){

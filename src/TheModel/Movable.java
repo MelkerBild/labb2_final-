@@ -1,3 +1,5 @@
+package TheModel;
+
 public interface Movable {
     void move();
 

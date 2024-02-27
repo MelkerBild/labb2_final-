@@ -1,3 +1,5 @@
+package TheModel;
+
 import java.awt.geom.Point2D;
 
 public interface Loading <T extends Car>{
