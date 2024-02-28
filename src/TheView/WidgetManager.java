@@ -15,7 +15,7 @@ import java.awt.*;
  * TODO: Write more actionListeners and wire the rest of the buttons
  **/
 
-public class WidgetManager extends JFrame implements Observer, B {
+public class WidgetManager extends JFrame implements Observer{
     public static final int X = 800;
     public static final int Y = 800;
 
@@ -28,6 +28,7 @@ public class WidgetManager extends JFrame implements Observer, B {
 
     int gasAmount = 0;
     int brakeAmount = 10;
+
     JLabel gasLabel = new JLabel("Amount of gas");
 
     public JButton gasButton = new JButton("Gas");

@@ -1,5 +1,6 @@
 package TheControl;
 
+import TheModel.B;
 import TheModel.Model;
 import TheView.WidgetManager;
 

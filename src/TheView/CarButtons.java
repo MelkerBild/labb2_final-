@@ -1,5 +1,7 @@
-package TheModel;
+package TheView;
 
+import TheModel.Model;
+import TheModel.Saab95;
 import TheView.WidgetManager;
 
 import javax.swing.*;

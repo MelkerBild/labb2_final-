@@ -3,7 +3,7 @@ package TheModel;
 import java.awt.*;
 import java.awt.geom.Point2D;
 
-public class Saab95 extends Car {
+public class Saab95 extends Car implements Turbo {
     public boolean turboOn;
 
     public Saab95(){

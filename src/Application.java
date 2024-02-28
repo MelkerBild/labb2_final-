@@ -5,7 +5,7 @@
  */
 
 import TheControl.Controller;
-import TheModel.CarButtons;
+import TheView.CarButtons;
 import TheModel.Model;
 import TheView.WidgetManager;
 

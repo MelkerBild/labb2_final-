@@ -13,13 +13,14 @@ public class Model {
     // A list of cars, modify if needed
     public static ArrayList<Car> cars = new ArrayList<>();
     public static Workshop<Volvo240> workshop = new Workshop(1);
-    static Volvo240 volvo = new Volvo240();
-    static Saab95 saab = new Saab95();
-    static Scania scania = new Scania();
+    //static Volvo240 volvo = new Volvo240();
+    //static Saab95 saab = new Saab95();
+    //static Scania scania = new Scania();
     public Model(){
-        cars.add(volvo);
-        cars.add(saab);
-        cars.add(scania);
+        new CarFactory(cars);
+        //cars.add(volvo);
+        //cars.add(saab);
+        //cars.add(scania);
     }
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
@@ -36,8 +37,9 @@ public class Model {
                     car.turnLeft();
                     car.turnLeft();
                 }
-                observer.actOnStatusChange();
             }
+            observer.actOnStatusChange();
+
         }
     }
     boolean checkwalls(int x, Car car){
@@ -77,15 +79,15 @@ public class Model {
     }
     public void turboOn(){
         for (Car car : cars)
-        {if (car instanceof Saab95){
-            ((Saab95) car).setTurboOn();
+        {if (car instanceof Turbo){
+            ((Turbo) car).setTurboOn();
         }
         }
     }
     public void turboOff(){
         for (Car car : cars)
-        {if (car instanceof Saab95){
-            ((Saab95) car).setTurboOff();
+        {if (car instanceof Turbo){
+            ((Turbo) car).setTurboOn();
         }
         }
     }
